@@ -1,0 +1,23 @@
+ARG DEBIAN_VERSION=buster
+FROM debian:${DEBIAN_VERSION}-slim
+
+ARG MARIADB_VERSION=10.3
+RUN apt-get update && apt-get install -y --no-install-recommends tini=0.18.* mariadb-client-${MARIADB_VERSION} && \
+    rm -rf /var/lib/apt/lists/*
+
+ARG MYSQL_USER=mysql
+ARG MYSQL_GROUP=mysql
+ARG MYSQL_UID=1000
+ARG MYSQL_GID=1000
+
+RUN groupadd -g ${MYSQL_GID} ${MYSQL_GROUP} && \
+    useradd -u ${MYSQL_UID} ${MYSQL_USER} -g ${MYSQL_GROUP} && \
+    mkdir -p /home/${MYSQL_USER}/work && \
+    chown -R ${MYSQL_USER}:${MYSQL_GROUP} /home/${MYSQL_USER}
+
+USER ${MYSQL_USER}
+WORKDIR /home/${MYSQL_USER}/work
+
+# Wait for CMD to exit, reap zombies and perform signal forwarding
+ENTRYPOINT ["/usr/bin/tini", "--"]
+CMD ["mysql", "--version"]

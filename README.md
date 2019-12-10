@@ -2,9 +2,9 @@
 
 This image has been created to satisfy the following requirements:
 
-- Based off a specific release of Alpine Linux - 3.10
-- Includes a known release of the mysql client and tools such as mysqladmin - 10.3
-- Avoids using the root user - uid=1000(mysql) gid=1000(mysql)
+- Use official base images - Alpine and Debian (slim)
+- Use specific release of the mysql client and tools such as mysqladmin
+- Avoid running as the root user
 
 
 
@@ -34,6 +34,16 @@ Note: The examples above will automatically prompt for the user password.
 
 
 
+#### Using the Debian Image
+
+The Debian image is used in much the same way as the Alpine image by specifying the appropriate tag:
+
+```
+docker container run -it --rm logiqx/mysql-client:slim
+```
+
+
+
 ### Building a Custom Image
 
 To build a custom image for a specific version of the MySQL client or Alpine use the following syntax:
@@ -42,10 +52,16 @@ To build a custom image for a specific version of the MySQL client or Alpine use
 docker image build --build-arg MYSQL_CLIENT_VERSION=10.3.20 . -t mysql-client:10.3.20
 ```
 
+To build a custom Debian image simply use Dockerfile-slim instead of Dockerfile:
+
+```
+docker image build --file Dockerfile-slim --build-arg MYSQL_CLIENT_VERSION=10.3.20 . -t mysql-client:10.3.20-slim
+```
+
 You can provide overrides for the following:
 
 - MYSQL_CLIENT_VERSION- default of ~10.3
-- ALPINE_VERSION - default of 3.10
+- ALPINE_VERSION / DEBIAN_VERSION  - default of 3.10 / buster
 - MYSQL_USER and MYSQL_GROUP - default of mysql
 - MYSQL_UID and MYSQL_GID - default of 1000
 
