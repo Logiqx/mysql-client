@@ -60,8 +60,8 @@ docker image build --file Dockerfile-slim --build-arg MYSQL_CLIENT_VERSION=10.3.
 
 You can provide overrides for the following:
 
-- MYSQL_CLIENT_VERSION- default of ~10.3
-- ALPINE_VERSION / DEBIAN_VERSION  - default of 3.10 / buster
+- MYSQL_CLIENT_VERSION - default of ~10.3
+- ALPINE_VERSION / DEBIAN_VERSION - default of 3.11 / buster
 - MYSQL_USER and MYSQL_GROUP - default of mysql
 - MYSQL_UID and MYSQL_GID - default of 1000
 
