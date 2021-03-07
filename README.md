@@ -49,19 +49,19 @@ docker container run -it --rm logiqx/mysql-client:slim
 To build a custom image for a specific version of the MySQL client or Alpine use the following syntax:
 
 ```
-docker image build --build-arg MYSQL_CLIENT_VERSION=10.3.20 . -t mysql-client:10.3.20
+docker image build --build-arg MYSQL_CLIENT_VERSION=10.5.9 . -t mysql-client:10.5.9
 ```
 
 To build a custom Debian image simply use Dockerfile-slim instead of Dockerfile:
 
 ```
-docker image build --file Dockerfile-slim --build-arg MYSQL_CLIENT_VERSION=10.3.20 . -t mysql-client:10.3.20-slim
+docker image build --file Dockerfile-slim --build-arg MYSQL_CLIENT_VERSION=10.5.9 . -t mysql-client:10.5.9-slim
 ```
 
 You can provide overrides for the following:
 
-- MYSQL_CLIENT_VERSION - default of ~10.3
-- ALPINE_VERSION / DEBIAN_VERSION - default of 3.11 / buster
+- MYSQL_CLIENT_VERSION - default of ~10.5
+- ALPINE_VERSION / DEBIAN_VERSION - default of 3.13 / buster
 - MYSQL_USER and MYSQL_GROUP - default of mysql
 - MYSQL_UID and MYSQL_GID - default of 1000
 
