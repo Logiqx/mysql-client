@@ -2,8 +2,10 @@ ARG DEBIAN_VERSION=buster
 FROM debian:${DEBIAN_VERSION}-slim
 
 ARG MARIADB_VERSION=10.3
-RUN apt-get update && apt-get install -y --no-install-recommends tini=0.18.* mariadb-client-${MARIADB_VERSION} && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    mariadb-client-${MARIADB_VERSION} \
+    tini=0.18.* \
+    && rm -rf /var/lib/apt/lists/*
 
 ARG MYSQL_USER=mysql
 ARG MYSQL_GROUP=mysql

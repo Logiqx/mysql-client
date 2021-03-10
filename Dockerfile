@@ -1,8 +1,10 @@
-ARG ALPINE_VERSION=3.13
+ARG ALPINE_VERSION=3.12
 FROM alpine:${ALPINE_VERSION}
 
-ARG MARIADB_VERSION=~10.5
-RUN apk add --no-cache tini=~0.19 mysql-client=${MARIADB_VERSION}
+ARG MARIADB_VERSION=~10.4
+RUN apk add --no-cache \
+    mysql-client=${MARIADB_VERSION} \
+    tini=~0.19
 
 ARG MYSQL_USER=mysql
 ARG MYSQL_GROUP=mysql
