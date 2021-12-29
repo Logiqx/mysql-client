@@ -39,7 +39,7 @@ Note: The examples above will automatically prompt for the user password.
 The Debian image is used in much the same way as the Alpine image by specifying the appropriate tag:
 
 ```
-docker container run -it --rm logiqx/mysql-client:slim
+docker container run -it --rm logiqx/mysql-client:10.5.12-slim-bullseye
 ```
 
 
@@ -49,19 +49,19 @@ docker container run -it --rm logiqx/mysql-client:slim
 To build a custom image for a specific version of the MySQL client or Alpine use the following syntax:
 
 ```
-docker image build --build-arg MARIADB_VERSION=10.5.9 . -t mysql-client:10.5.9
+docker image build --build-arg MARIADB_VERSION=10.6.4 . -t mysql-client:10.6.4-alpine3.15
 ```
 
 To build a custom Debian image simply use Dockerfile-slim instead of Dockerfile:
 
 ```
-docker image build --file Dockerfile-slim --build-arg MARIADB_VERSION=10.5.9 . -t mysql-client:10.5.9-slim
+docker image build --build-arg MARIADB_VERSION=10.5.12 . -f Dockerfile-slim -t mysql-client:10.5.12-slim-bullseye
 ```
 
 You can provide overrides for the following:
 
 - MARIADB_VERSION - default of ~10.5
-- ALPINE_VERSION / DEBIAN_VERSION - default of 3.13 / buster
+- ALPINE_VERSION / DEBIAN_VERSION - default of 3.15 / bullseye
 - MYSQL_USER and MYSQL_GROUP - default of mysql
 - MYSQL_UID and MYSQL_GID - default of 1000
 
